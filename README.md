@@ -10,7 +10,7 @@ Installation:
 
 1. clone the repository:
 
-git clone ....
+git clone https://github.com/joernklinger/IronyHQpub.git
 
 2. Install MongoDB and create a database called 'IronyHQ', with a collection called 'tweets'.
 
