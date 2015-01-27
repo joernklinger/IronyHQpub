@@ -8,13 +8,13 @@ It contains of 3 parts:
 
 Installation:
 
-1. clone the repository:
+1. Clone the repository:
 
 git clone https://github.com/joernklinger/IronyHQpub.git
 
 2. Install MongoDB and create a database called 'IronyHQ', with a collection called 'tweets'.
 
-3. install the following Python modules:
+3. Install the following Python modules:
 
 sys
 tweepy
