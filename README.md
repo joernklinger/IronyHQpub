@@ -15,12 +15,7 @@ Installation:
 
 3. Install the following Python modules:
 
-	sys
-	tweepy
-	json		
-	pymongo
-	re		
-	argparse
+	sys, tweepy, json, pymongo, re, argparse
 
 4. In IronyHQ/Annoation:
 
