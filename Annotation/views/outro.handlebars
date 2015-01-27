@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+    <title>Twitter Irony</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<style>
+ .btn-xlg {
+    padding: 15px 20px;
+    font-size: 40px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+</style>
+</head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<body>
+    <div class="col-xs-12 col-sm-9 col-md-6 col-lg-6">
+        <div class="jumbotron">
+        <h2 style='text-align:center'>Almost done!</h2>
+        <h3 style='text-align:center'>Thank you very much, click the button below to complete the task.</h3>
+        <br>
+        <br>
+
+        <FORM METHOD=POST ACTION="https://workersandbox.mturk.com/mturk/externalSubmit?assignmentId={{assignment}}&hitId={{hit}}&workerId={{worker}}">
+        <INPUT TYPE=SUBMIT VALUE="Send It Sandbox hit+woker">
+        </FORM>
+
+        </div>
+    </div>
+
+
+<script>
+
+var workerId = '{{worker}}';
+
+gotMoreInfo = 0;
+
+function moreInfo() {
+    gotMoreInfo = 1;
+    var url = 'https://twitter.com/{{name}}';
+    var win = window.open(url);
+    win.focus();
+}
+
+// Test
+// function endHit() {
+//     console.log('trying to end ' + assignmentId);
+//     $.post('https://www.mturk.com/mturk/externalSubmit?assignmentId=' + assignmentId,
+//     {
+//     },
+//     function(data, status) {
+//     });
+// }
+
+
+function buttonSubmit() {
+    console.log('buttonSubmit');
+    $.post('https://www.mturk.com/mturk/externalSubmit?assignmentId=' + assignmentId,
+    {
+    },
+    function(data, status) {
+    });
+    //window.location = 'TURK POST HIT FINISHED';
+}
+
+</script>
+
+</body>
+
+</html>

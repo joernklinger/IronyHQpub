@@ -1,0 +1,61 @@
+<div>
+Start a stream.
+ <button type="button" onclick="start_stream()" class="btn btn-block btn-info center-block" id="childP"><h4>Start Child Process</h4></button>
+</div>
+
+<div class="container">
+  <h2>Vertical (basic) form</h2>
+  <form role="form">
+    <div class="form-group">
+      <label for="method">method:</label>
+      <input type="text" class="form-control" id="method" placeholder="Enter method">
+    </div>
+    <div class="form-group">
+      <label for="pwd">track_terms:</label>
+      <input type="text" class="form-control" id="track_terms" placeholder="Enter track_terms">
+    </div>
+    <button type="button" onclick="start_stream()" class="btn btn-block btn-info center-block" id="childP"><h4>Start Child Process</h4></button>
+  </form>
+</div>
+
+{{active_streams.[0].[0]}}
+{{rolf}}
+
+<div>
+{{#each active_streams}}
+ <button type="button" onclick="stop_stream({{this.[0]}})" class="btn btn-block btn-info center-block" id="childP"><h4>Process {{this}} push to kill {{this.[0]}}</h4></button>
+{{/each}}
+</div>
+
+<script>
+
+
+function start_stream() {
+    var settings = new Object({});
+    settings.method = document.getElementById('method').value;
+    settings.track_terms = document.getElementById('track_terms').value.split(',');
+    console.log(method + track_terms);
+    $.post('/start_stream',
+        {
+           settings: settings
+        },
+    function(data, status) {
+    });
+    window.location = 'http://localhost:3000';
+}
+
+
+// need to subtract from running processes when stopped
+function stop_stream(id) {
+    console.log(id);
+    $.post('/stop_stream',
+        {
+            data: id
+        },
+    function(data, status) {
+    });
+    window.location = 'http://localhost:3000';
+}
+
+
+</script>

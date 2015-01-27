@@ -1,0 +1,47 @@
+Trial: {{trial}}
+Worker: {{worker}}
+<button type="button" onclick="buttonSubmit('0')" class="btn btn-lg btn-standard" id="Rate"><h2>OK</h2></button>
+
+<script>
+
+// Get Turk Params
+function getParamFromURL(name) {
+    name = name.replace(/[\[]/,"\\[").replace(/[\]]/,"\\]");
+    var regexS = "[\?&]"+name+"=([^&#]*)";
+    var regex = new RegExp( regexS );
+    var results = regex.exec( window.location.href );
+    if( results == null )
+      return "";
+    else
+      return results[1];
+}
+
+/*
+// get Turk info
+var usernameFromParamString = getParamFromURL('workerId');
+var assignmentIdFromParamString = getParamFromURL('assignmentId');
+var hitIdFromParamString = getParamFromURL('hitId');
+
+var usernameFromParamString = 'DefwWrkerId';
+var assignmentIdFromParamString = 'DefAssignmentId';
+var hitIdFromParamString = 'DefHitId';
+*/
+
+var workerId = '{{worker}}';
+// Button Submit Post
+function buttonSubmit(oneOrzero) {
+    console.log(oneOrzero);
+    // WorkerID = '';
+    $.post('/annotate',
+    {
+      data: [oneOrzero],
+      workerIdPost: workerId
+    },
+    function(data, status) {
+    });
+    window.location = 'https://psych.ling.utexas.edu:80?workerId={{worker}}';
+}
+
+
+
+</script>

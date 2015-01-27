@@ -1,0 +1,19 @@
+# ignore packages installed by npm
+node_modules
+
+# ignore Credentials directory with sensitive files
+Credentials
+
+# put any other files you don't want to check in here,
+# such as .DS_Store (OSX), *.bak, etc.
+.DS_Store
+*.sublime-workspace
+
+# we don't want to accidentally check our secret credentials into the repo
+credentials.js
+
+# And we don't want the settings
+settings.json
+twitter_accounts.json
+*.key
+*crt

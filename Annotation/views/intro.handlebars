@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+    <title>Twitter Irony</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<style>
+   .green {
+   color:green;
+    }
+
+    .orange {
+   color:orange;
+    }
+
+    .grey {
+   color:grey;
+    }
+
+    .blue {
+   color:blue;
+    }
+
+    .btn-xlg {
+    padding: 15px 20px;
+    font-size: 35px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+</style>
+</head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<body>
+<div class="col-xs-12 col-sm-9 col-md-6 col-lg-6">
+    <div class="jumbotron">
+    <h2 style='text-align:center'>Judge 10 Tweets for Irony</h2>
+    <h4>
+    <ul class="list-unstyled">
+      <li>In this HIT evaluate whether a Tweet is ironic or sincere.</li>
+      <li>Follow the steps below:</li><br>
+      <li>1. Read the Tweet.</li>
+      <li>2. Think about whether the it is ironic or sincere.</li>
+      <li>3. Use the slider to indicate how confident you feel about your judgment.</li>
+      <li>4. Click <span class='green'>Sincere</span> if the Tweet is sincere or <span class='orange'>Ironic</span> if it is ironic.</li><br>
+      <li>Note:</li><br>
+      <ul style='list-style: none;'>
+      <li>- Sometimes it is hard to tell whether a Tweet is ironic, unless you know who wrote it. Click on <span class='blue'>the text of the tweet</span> to get more info on the author.</li><br>
+      <li>- For some Tweets <span class='orange'>Ironic</span> or <span class='green'>Sincere</span> does not apply, in that case click the question mark -<span class='grey'>?</span>-.</li>
+      </ul>
+    </ul>
+    </h4>
+    <br>
+    {{#if worker}}
+    <div class='span12' style='text-align:center'><button type="button" onclick="buttonSubmit('1')" class="btn btn-info" id="go"><h4>Ok, let's go!</h4></button></div>
+    {{/if}}
+    </div>
+</div>
+
+<script src="//code.jquery.com/jquery-2.0.2.min.js"></script>
+
+<script>
+
+var workerId = '{{worker}}';
+var assignmentId = '{{assignment}}';
+
+// Button Submit Post
+function buttonSubmit(oneOrzero) {
+      console.log(oneOrzero);
+    // WorkerID = '';
+    $.post('/annotate',
+    {
+      data: [oneOrzero],
+      workerIdPost: workerId,
+      assignmentIdPost: assignmentId
+    },
+    function(data, status) {
+    });
+    window.location = 'https://psych.ling.utexas.edu:80/?workerId={{worker}}';
+}
+
+</script>
+</body>
+</html>

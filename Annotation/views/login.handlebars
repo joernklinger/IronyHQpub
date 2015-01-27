@@ -1,0 +1,47 @@
+
+<!-- Form Name -->
+<legend>Twitter Annotator Login</legend>
+
+<!-- Text input-->
+<div class="control-group">
+  <label class="control-label" for="nameInput">Name</label>
+  <div class="controls">
+    <input id="name" name="name" type="text" placeholder="" value="" class="input-xlarge" required="">
+    <p class="help-block">Username</p>
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="control-group">
+  <label class="control-label" for="passwordInput">Password</label>
+  <div class="controls">
+    <input id="pw" name="pw" type="password" placeholder="" value="" class="input-xlarge" required="">
+    <p class="help-block">Password</p>
+  </div>
+</div>
+
+<!-- Button -->
+<div class="control-group">
+  <label class="control-label" for="loginButton"></label>
+  <div class="controls">
+    <button id="loginButton" name="loginButton" class="btn btn-primary" onclick="buttonSubmit()" >Log in</button>
+  </div>
+</div>
+
+
+
+<script>
+
+function buttonSubmit() {
+    x = document.getElementById("name").value;
+    y = document.getElementById("pw").value;
+    $.post("/login",
+    {
+      loginData: [x, y],
+    },
+    function(data, status){
+      console.log('client: ' + loginData);
+    });
+    window.location = 'https://146.6.100.193:443';
+}
+</script >

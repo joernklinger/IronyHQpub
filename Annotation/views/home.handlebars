@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+    <title>Twitter Irony</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<style>
+.well {
+    background: white;
+}
+</style>
+
+</head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<body>
+
+<div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-9 col-md-6 col-lg-6">
+                <div class="jumbotron">
+                    <h3 style='text-align: center'>Tweet</h3>
+                    <div class="well">
+                        <h4><a onclick='moreInfo(); gotMoreInfo=1;' href="#">{{text}}</a></h4>
+                    </div>
+                    <div class="panel">
+                    <div class="panel-heading">
+                        <p class="panel-title text-center"><h4 class="text-center">Confidence</h4></p>
+                        <span class="label label-default pull-left">low</span>
+                        <span class="label label-default pull-right">high</span>
+                    </div>
+                    <div class="panel-body">
+                        <input id="slider1" type="range" min="0" max="6" step="1" />
+                    </div>
+                    </div>
+
+                    <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <button type="button" onclick="buttonSubmit('0');" class="btn btn-block btn-success center-block" id="sincere" ><h5>Sincere</h5></button>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <button type="button" onclick="buttonSubmit('-1');" class="btn btn-block btn-default center-block" id="doesnt_apply"><h5>?</h5></button>
+                            </div>
+                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                <button type="button" onclick="buttonSubmit('1')" class="btn btn-block btn-warning center-block" id="ironic"><h5>Ironic</h5></button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+<script>
+
+var workerId = '{{worker}}';
+
+// set to default for now
+var assignmentId = 'defaultAssignment';
+var hitId = 'defaultHit';
+
+gotMoreInfo = 0;
+
+function moreInfo() {
+    gotMoreInfo = 1;
+    var url = 'https://twitter.com/{{name}}';
+    var win = window.open(url);
+    win.focus();
+}
+
+
+function buttonSubmit(oneOrzero) {
+    console.log(oneOrzero);
+    ConfidenceRating = document.getElementById('slider1').value;
+    $.post('/annotate',
+    {
+      data: [oneOrzero, gotMoreInfo, ConfidenceRating, , workerId, assignmentId, hitId],
+      workerIdPost: workerId
+    },
+    function(data, status) {
+    });
+    window.location = 'https://psych.ling.utexas.edu:80/?workerId={{worker}}';
+}
+
+</script>
+</html>
